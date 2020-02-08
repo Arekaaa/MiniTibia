@@ -1,0 +1,10 @@
+------------------MiniTibia------------------ 
+
+ToDo:
+- Obsługa wszystkich przycisków programu
+
+Changelog:
+
+v0.1 beta -> 05.02.2020
+- Stworzenie prostego interfejsu użytkownika ze stroną treningową
+- Obsłużenie przycisku changelog otwierającego spis wersji programu
