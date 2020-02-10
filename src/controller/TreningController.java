@@ -112,6 +112,20 @@ public class TreningController {
         return wylosowanySleepMonet;
     }
 
+    void statystyki(){
+        int hp = Integer.parseInt(labelHP.getText()) + 50;
+        String hpZsumowane = Integer.toString(hp);
+        labelHP.setText(hpZsumowane);
+
+        int dmg = Integer.parseInt(labelDMG.getText())+10;
+        String dmgZsumowane = Integer.toString(dmg);
+        labelDMG.setText(dmgZsumowane);
+
+        int armor = Integer.parseInt(labelArmor.getText())+5;
+        String armorZsumowane = Integer.toString(armor);
+        labelArmor.setText(armorZsumowane);
+    }
+
     @FXML
     void onTrenujClick(ActionEvent event) {
         CharacterBean character = new CharacterBean();
@@ -225,6 +239,7 @@ public class TreningController {
                                             String maxExpToString = Integer.toString(maxExp);
                                             labelLVL.setText(lvlDodany);
                                             labelMaxExp.setText(maxExpToString);
+                                            statystyki();
                                             String nowyLvl = czas +" -> Gratulację! Osiągnięto nowy lvl !!! " + lvlDodany +" lvl";
                                             treningList.getItems().add(nowyLvl);
                                         } else { // W przeciwnym razie dodaje expa dalej
@@ -291,16 +306,25 @@ public class TreningController {
             character.setExp(0);
             character.setMaxExp(100);
             character.setMoney(0);
+            character.setHp(100);
+            character.setDmg(20);
+            character.setArmor(10);
 
             String resetLvl = Integer.toString(character.getLvl());
             String resetExp = Integer.toString(character.getExp());
             String resetMaxExp = Integer.toString(character.getMaxExp());
             String resetMonet = Integer.toString(character.getMoney());
+            String resetHp = Integer.toString(character.getHp());
+            String resetDmg = Integer.toString(character.getDmg());
+            String resetArmor = Integer.toString(character.getArmor());
 
             labelLVL.setText(resetLvl);
             labelEXP.setText(resetExp);
             labelMaxExp.setText(resetMaxExp);
             labelMonety.setText(resetMonet);
+            labelHP.setText(resetHp);
+            labelDMG.setText(resetDmg);
+            labelArmor.setText(resetArmor);
             progressBar.setProgress(0.0);
 
             treningList.getItems().add("Zresetowano grę!");
@@ -313,6 +337,9 @@ public class TreningController {
         String exp = labelEXP.getText();
         String maxExp = labelMaxExp.getText();
         String monety = labelMonety.getText();
+        String hp = labelHP.getText();
+        String dmg = labelDMG.getText();
+        String armor = labelArmor.getText();
 
         try {
             PrintWriter zapis = new PrintWriter(SaveBox.save("SaveGame", "Wpisz nazwę pod jaką chcesz zapisać swój stan gry :"));
@@ -321,6 +348,9 @@ public class TreningController {
             zapis.println(exp);
             zapis.println(maxExp);
             zapis.println(monety);
+            zapis.println(hp);
+            zapis.println(dmg);
+            zapis.println(armor);
 
             zapis.close();
             treningList.getItems().add("Zapisano grę pod nazwą: "+SaveBox.getNazwaZapisana());
@@ -346,21 +376,33 @@ public class TreningController {
                 String odczytExp = odczyt.nextLine();
                 String odczytMaxExp = odczyt.nextLine();
                 String odczytMonet = odczyt.nextLine();
+                String odczytHp = odczyt.nextLine();
+                String odczytDmg = odczyt.nextLine();
+                String odczytArmor = odczyt.nextLine();
 
                 int wczytanyLvl = Integer.parseInt(odczytLvl);
                 int wczytanyExp = Integer.parseInt(odczytExp);
                 int wczytanyMaxExp = Integer.parseInt(odczytMaxExp);
                 int wczytaneMonety = Integer.parseInt(odczytMonet);
+                int wczytaneHp = Integer.parseInt(odczytHp);
+                int wczytaneDmg = Integer.parseInt(odczytDmg);
+                int wczytanyArmor = Integer.parseInt(odczytArmor);
 
                 character.setLvl(wczytanyLvl);
                 character.setExp(wczytanyExp);
                 character.setMaxExp(wczytanyMaxExp);
                 character.setMoney(wczytaneMonety);
+                character.setHp(wczytaneHp);
+                character.setDmg(wczytaneDmg);
+                character.setArmor(wczytanyArmor);
 
                 labelLVL.setText(odczytLvl);
                 labelEXP.setText(odczytExp);
                 labelMaxExp.setText(odczytMaxExp);
                 labelMonety.setText(odczytMonet);
+                labelHP.setText(odczytHp);
+                labelDMG.setText(odczytDmg);
+                labelArmor.setText(odczytArmor);
 
                 double percent = (wczytanyExp * 100 / wczytanyMaxExp);
                 double progress = percent/100;

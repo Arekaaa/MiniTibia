@@ -74,13 +74,13 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="labelHP" layoutX="479.0" layoutY="122.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelHP" layoutX="475.0" layoutY="121.0" text="100" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Label>
-            <Label fx:id="labelDMG" layoutX="479.0" layoutY="162.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelDMG" layoutX="479.0" layoutY="161.0" text="20" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font></Label>
             <ToggleButton fx:id="treningButton" layoutX="378.0" layoutY="417.0" mnemonicParsing="false" onAction="#onTrenujClick" prefHeight="79.0" prefWidth="160.0" text="Trenuj">
                <font>
@@ -163,9 +163,9 @@
                   <Font name="System Bold" size="16.0" />
                </font>
             </Label>
-            <Label fx:id="labelArmor" layoutX="479.0" layoutY="203.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelArmor" layoutX="479.0" layoutY="202.0" text="10" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="14.0" />
                </font>
             </Label>
             <Button layoutY="589.0" mnemonicParsing="false" onAction="#onExitClick" text="Wyjście z gry" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
