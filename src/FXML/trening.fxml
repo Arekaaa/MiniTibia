@@ -45,19 +45,19 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label layoutX="23.0" layoutY="57.0" text="Lvl" textFill="WHITE">
+            <Label layoutX="36.0" layoutY="57.0" text="Lvl" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="30.0" />
                </font>
             </Label>
-            <Label fx:id="labelLVL" layoutX="90.0" layoutY="57.0" text="1" textFill="WHITE">
+            <Label fx:id="labelLVL" layoutX="110.0" layoutY="57.0" text="1" textFill="WHITE">
                <font>
                   <Font name="System Bold Italic" size="30.0" />
                </font>
             </Label>
-            <Label layoutX="23.0" layoutY="113.0" text="Monety" textFill="WHITE">
+            <Label layoutX="23.0" layoutY="117.0" text="Monety" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="18.0" />
                </font></Label>
             <Label layoutX="391.0" layoutY="53.0" prefHeight="49.0" prefWidth="111.0" text="Statystyki" textFill="WHITE">
                <font>
@@ -87,27 +87,27 @@
                   <Font size="35.0" />
                </font>
             </ToggleButton>
-            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="696.0" layoutY="88.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="69.0" fitWidth="74.0" layoutX="697.0" layoutY="79.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/sword.jpg" />
+                  <Image url="@../Images/sword.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="696.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="66.0" layoutX="693.0" layoutY="155.0" pickOnBounds="true" preserveRatio="true">
                <image>
-                  <Image url="@../Images/helmet.jpg" />
+                  <Image url="@../Images/helmet.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="696.0" layoutY="227.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="66.0" layoutX="693.0" layoutY="223.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/armor.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="696.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="69.0" fitWidth="74.0" layoutX="687.0" layoutY="284.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/trousers.png" />
                </image>
             </ImageView>
-            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="697.0" layoutY="344.0" pickOnBounds="true" preserveRatio="true">
+            <ImageView fitHeight="57.0" fitWidth="50.0" layoutX="697.0" layoutY="353.0" pickOnBounds="true" preserveRatio="true">
                <image>
                   <Image url="@../Images/boots.png" />
                </image>
@@ -129,11 +129,11 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelSpodnie" layoutX="822.0" layoutY="301.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelSpodnie" layoutX="822.0" layoutY="310.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelButy" layoutX="822.0" layoutY="364.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelButy" layoutX="822.0" layoutY="373.0" text="Label" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
@@ -149,9 +149,9 @@
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelMonety" layoutX="111.0" layoutY="114.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelMonety" layoutX="114.0" layoutY="117.0" text="0" textFill="WHITE">
                <font>
-                  <Font name="System Bold" size="12.0" />
+                  <Font name="System Bold" size="18.0" />
                </font></Label>
             <ListView fx:id="treningList" layoutX="282.0" layoutY="231.0" opacity="0.8" prefHeight="175.0" prefWidth="352.0" />
             <Button layoutX="2.0" mnemonicParsing="false" onAction="#onTreningClick" prefHeight="25.0" prefWidth="125.0" text="Trening" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />

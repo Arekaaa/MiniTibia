@@ -21,7 +21,6 @@ import java.util.Random;
 import java.util.Scanner;
 
 public class TreningController {
-
     @FXML
     private ProgressBar progressBar;
 
@@ -97,19 +96,34 @@ public class TreningController {
         int wylosowanySleep=generatorSleepa.nextInt((max-min)+1)+min;
         return wylosowanySleep;
     }
+    private int losujMonety(){
+        Random generatorMonet = new Random();
+        int min=1;
+        int max=5;
+        int wylosowaneMonety=generatorMonet.nextInt((max-min)+1)+min;
+        return wylosowaneMonety;
+    }
+
+    private int losujSleepMonet(){
+        Random generatorMonet = new Random();
+        int min=60000;
+        int max=100000;
+        int wylosowanySleepMonet=generatorMonet.nextInt((max-min)+1)+min;
+        return wylosowanySleepMonet;
+    }
+
     @FXML
     void onTrenujClick(ActionEvent event) {
         CharacterBean character = new CharacterBean();
         try {
-            Random generatorExpa = new Random();
-            Random generatorSleepa = new Random();
             if (treningButton.isSelected()) {
-                Thread t2 = new Thread(new Runnable() { // Wątek obsługujący freezowanie buttona na 15 minut w celu unikania oszustwa.
+                treningList.getItems().add("Trening rozpoczęty...");
+                Thread t2 = new Thread(new Runnable() { // Wątek obsługujący freezowanie buttona na 20 sekund w celu unikania oszustwa.
                     @Override
                     public void run() {
                         treningButton.setDisable(true);
                         try {
-                            Thread.sleep(15000);
+                            Thread.sleep(20000);
                         } catch (InterruptedException e) {
                             e.printStackTrace();
                         }
@@ -121,12 +135,51 @@ public class TreningController {
                         });
                     }
                 });
-               Thread t = new Thread(new Runnable() { // Wątek dodający expa i lvl
+
+                Thread t3 = new Thread(new Runnable() { // Wątek obsługuje losowanie monet w czasie treningu.
+                    @Override
+                    public void run() {
+                        while(treningButton.isSelected()) {
+                            try {
+                                Thread.sleep(losujSleepMonet());
+                            } catch (InterruptedException e) {
+                                e.printStackTrace();
+                            }
+                            Platform.runLater(new Runnable() {
+                                @Override
+                                public void run() {
+                                    Calendar now = Calendar.getInstance();
+                                    String minuta;
+                                    String godzina;
+                                    if (now.get(Calendar.MINUTE) <= 9) {
+                                        minuta = "0" + now.get(Calendar.MINUTE);
+                                    } else {
+                                        minuta = Integer.toString(now.get(Calendar.MINUTE));
+                                    }
+                                    if (now.get(Calendar.HOUR_OF_DAY) <= 9) {
+                                        godzina = "0" + now.get(Calendar.HOUR_OF_DAY);
+                                    } else {
+                                        godzina = Integer.toString(now.get(Calendar.HOUR_OF_DAY));
+                                    }
+                                    String czas = godzina + ":" + minuta;
+
+                                    character.setMoney(losujMonety());
+                                    treningList.getItems().add(czas + " -> Zdobyto kolejne monety: " + character.getMoney() + " monety!");
+                                    int monety = Integer.parseInt(labelMonety.getText()) + character.getMoney();
+                                    String monetyZsumowane = Integer.toString(monety);
+                                    labelMonety.setText(monetyZsumowane);
+                                }
+                            });
+                        }
+                    }
+                });
+                Thread t = new Thread(new Runnable() { // Wątek dodający expa i lvl
                     @Override
                     public void run() {
                         t2.start(); // uruchomiony wątek drugi w tym miejscu
                         while (treningButton.isSelected()) {
                             try {
+                                Thread.sleep(losujSleep());
                                 Platform.runLater(new Runnable() {
                                     @Override
                                     public void run() {
@@ -182,16 +235,21 @@ public class TreningController {
                                         treningList.scrollTo(index); // Scrolluje do nowych danych na liście
                                     }
                                 });
-                                Thread.sleep(losujSleep()); // Losuje czas zdobywania nowego doświadczenia.
+                                // Losuje czas zdobywania nowego doświadczenia.
                             }
                             catch(InterruptedException en){
                                 en.printStackTrace();
                             }
                         }
+                        Thread.currentThread().interrupt();
+                        t3.interrupt();
+                        //treningList.getItems().add("BONUS: Otrzymano bonus w postaci partii expa oraz monet :)");
                     }
                 });
-                //t.setDaemon(true);
+                t.setDaemon(true);
                 t.start(); // uruchomiony wątek pierwszy
+                t3.setDaemon(true);
+                t3.start(); // uruchamiany wątek losowania monet w tym miejscu
             }
         }
         catch(Exception e){
@@ -232,14 +290,17 @@ public class TreningController {
             character.setLvl(1);
             character.setExp(0);
             character.setMaxExp(100);
+            character.setMoney(0);
 
             String resetLvl = Integer.toString(character.getLvl());
             String resetExp = Integer.toString(character.getExp());
             String resetMaxExp = Integer.toString(character.getMaxExp());
+            String resetMonet = Integer.toString(character.getMoney());
 
             labelLVL.setText(resetLvl);
             labelEXP.setText(resetExp);
             labelMaxExp.setText(resetMaxExp);
+            labelMonety.setText(resetMonet);
             progressBar.setProgress(0.0);
 
             treningList.getItems().add("Zresetowano grę!");
@@ -251,6 +312,7 @@ public class TreningController {
         String lvl = labelLVL.getText();
         String exp = labelEXP.getText();
         String maxExp = labelMaxExp.getText();
+        String monety = labelMonety.getText();
 
         try {
             PrintWriter zapis = new PrintWriter(SaveBox.save("SaveGame", "Wpisz nazwę pod jaką chcesz zapisać swój stan gry :"));
@@ -258,6 +320,7 @@ public class TreningController {
             zapis.println(lvl);
             zapis.println(exp);
             zapis.println(maxExp);
+            zapis.println(monety);
 
             zapis.close();
             treningList.getItems().add("Zapisano grę pod nazwą: "+SaveBox.getNazwaZapisana());
@@ -281,19 +344,23 @@ public class TreningController {
                 Scanner odczyt = new Scanner(selectedFile);
                 String odczytLvl = odczyt.nextLine();
                 String odczytExp = odczyt.nextLine();
-                String odczytMaxExp = odczyt.next();
+                String odczytMaxExp = odczyt.nextLine();
+                String odczytMonet = odczyt.nextLine();
 
                 int wczytanyLvl = Integer.parseInt(odczytLvl);
                 int wczytanyExp = Integer.parseInt(odczytExp);
                 int wczytanyMaxExp = Integer.parseInt(odczytMaxExp);
+                int wczytaneMonety = Integer.parseInt(odczytMonet);
 
                 character.setLvl(wczytanyLvl);
                 character.setExp(wczytanyExp);
                 character.setMaxExp(wczytanyMaxExp);
+                character.setMoney(wczytaneMonety);
 
                 labelLVL.setText(odczytLvl);
                 labelEXP.setText(odczytExp);
                 labelMaxExp.setText(odczytMaxExp);
+                labelMonety.setText(odczytMonet);
 
                 double percent = (wczytanyExp * 100 / wczytanyMaxExp);
                 double progress = percent/100;
