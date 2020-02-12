@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<?import javafx.scene.control.Button?>
+<?import javafx.scene.control.Label?>
+<?import javafx.scene.control.ListView?>
+<?import javafx.scene.control.Menu?>
+<?import javafx.scene.control.MenuBar?>
+<?import javafx.scene.control.MenuItem?>
+<?import javafx.scene.control.SeparatorMenuItem?>
+<?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.VBox?>
+<?import javafx.scene.text.Font?>
+
+<VBox prefHeight="640.0" prefWidth="1000.0" xmlns="http://javafx.com/javafx/8.0.171" xmlns:fx="http://javafx.com/fxml/1" fx:controller="controller.ShopController">
+   <children>
+      <MenuBar VBox.vgrow="NEVER">
+         <menus>
+            <Menu mnemonicParsing="false" text="MiniTibia">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onNowaGraClick" text="Nowa gra" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onZapiszClick" text="Zapisz" />
+                  <MenuItem mnemonicParsing="false" onAction="#onLoadClick" text="Wczytaj" />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem disable="true" mnemonicParsing="false" text="Opcje..." />
+                  <SeparatorMenuItem mnemonicParsing="false" />
+                  <MenuItem mnemonicParsing="false" onAction="#onExitClickMenu" text="Wyjdź z gry" />
+               </items>
+            </Menu>
+            <Menu mnemonicParsing="false" text="Help">
+               <items>
+                  <MenuItem mnemonicParsing="false" onAction="#onAboutClick" text="About MiniTibia" />
+               </items>
+            </Menu>
+         </menus>
+      </MenuBar>
+      <AnchorPane id="anchorPane" maxHeight="-1.0" maxWidth="-1.0" prefHeight="-1.0" prefWidth="-1.0" stylesheets="@../CSS/background.css" VBox.vgrow="ALWAYS">
+         <children>
+            <Label layoutX="36.0" layoutY="57.0" text="Lvl" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="30.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelLVL" layoutX="110.0" layoutY="57.0" text="1" textFill="WHITE">
+               <font>
+                  <Font name="System Bold Italic" size="30.0" />
+               </font>
+            </Label>
+            <Label layoutX="23.0" layoutY="117.0" text="Monety" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <Label layoutX="442.0" layoutY="55.0" prefHeight="49.0" prefWidth="67.0" text="Sklep" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="26.0" />
+               </font>
+            </Label>
+            <Label fx:id="labelMonety" layoutX="114.0" layoutY="117.0" text="0" textFill="WHITE">
+               <font>
+                  <Font name="System Bold" size="18.0" />
+               </font>
+            </Label>
+            <ListView fx:id="shopList" layoutX="258.0" layoutY="144.0" opacity="0.8" prefHeight="264.0" prefWidth="436.0" />
+            <Button layoutX="2.0" mnemonicParsing="false" onAction="#onTreningClick" prefHeight="25.0" prefWidth="125.0" text="Trening" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
+            <Button disable="true" layoutX="125.0" mnemonicParsing="false" onAction="#onEkwipunekClick" prefHeight="25.0" prefWidth="125.0" text="Ekwipunek" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="250.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="920.0" layoutY="589.0" mnemonicParsing="false" onAction="#onChangelogClick" text="Changelog" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
+            <Button layoutY="589.0" mnemonicParsing="false" onAction="#onExitClick" text="Wyjście z gry" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
+         </children>
+      </AnchorPane>
+   </children>
+</VBox>

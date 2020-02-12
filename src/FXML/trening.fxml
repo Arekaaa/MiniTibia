@@ -156,7 +156,7 @@
             <ListView fx:id="treningList" layoutX="282.0" layoutY="231.0" opacity="0.8" prefHeight="175.0" prefWidth="352.0" />
             <Button layoutX="2.0" mnemonicParsing="false" onAction="#onTreningClick" prefHeight="25.0" prefWidth="125.0" text="Trening" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
             <Button disable="true" layoutX="125.0" mnemonicParsing="false" onAction="#onEkwipunekClick" prefHeight="25.0" prefWidth="125.0" text="Ekwipunek" AnchorPane.topAnchor="0.0" />
-            <Button disable="true" layoutX="250.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="sklepButton" layoutX="250.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.topAnchor="0.0" />
             <Button layoutX="920.0" layoutY="589.0" mnemonicParsing="false" onAction="#onChangelogClick" text="Changelog" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Label layoutX="378.0" layoutY="199.0" text="Armor" textFill="WHITE">
                <font>

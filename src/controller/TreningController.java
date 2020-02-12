@@ -7,6 +7,9 @@ import beans.CharacterBean;
 import javafx.application.Platform;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.*;
 import javafx.stage.FileChooser;
 import javafx.stage.Stage;
@@ -67,18 +70,49 @@ public class TreningController {
     private ToggleButton treningButton;
 
     @FXML
+    private Button sklepButton;
+
+    CharacterBean character = new CharacterBean();
+
+    void loadTreningData(String lvl, String money,String exp, String maxExp, String hp, String dmg, String armor,double progress){
+        labelLVL.setText(lvl);
+        labelMonety.setText(money);
+        labelEXP.setText(exp);
+        labelMaxExp.setText(maxExp);
+        labelHP.setText(hp);
+        labelDMG.setText(dmg);
+        labelArmor.setText(armor);
+        progressBar.setProgress(progress);
+    }
+
+    @FXML
     void onEkwipunekClick(ActionEvent event) {
 
     }
 
     @FXML
     void onSklepClick(ActionEvent event) {
-
+        try {
+            FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/sklep.fxml"));
+           // Parent root = FXMLLoader.load(getClass().getResource("/FXML/sklep.fxml"));
+            Parent root = fxmlLoader.load();
+            ShopController shop = fxmlLoader.getController();
+            shop.loadShopData(labelLVL.getText(),labelMonety.getText(),labelEXP.getText(),labelMaxExp.getText(),labelHP.getText(),labelDMG.getText(),labelArmor.getText());
+            Stage stage = new Stage();
+            stage.setScene(new Scene(root));
+            stage.setResizable(false);
+            stage.setTitle("Sklep");
+            stage.show();
+            ((Stage) (((Button) event.getSource()).getScene().getWindow())).close();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 
     @FXML
     void onTreningClick(ActionEvent event) {
-
+        // Can be empty
     }
 
     private int losujExp(){
@@ -128,10 +162,10 @@ public class TreningController {
 
     @FXML
     void onTrenujClick(ActionEvent event) {
-        CharacterBean character = new CharacterBean();
         try {
             if (treningButton.isSelected()) {
-                treningList.getItems().add("Trening rozpoczęty...");
+                treningList.getItems().add("Trening rozpoczęty... Sklep niedostępny");
+                treningList.getItems().add("Poczekaj 20 sekund a następnie zakończ trening w celu włączenia sklepu");
                 Thread t2 = new Thread(new Runnable() { // Wątek obsługujący freezowanie buttona na 20 sekund w celu unikania oszustwa.
                     @Override
                     public void run() {
@@ -192,6 +226,7 @@ public class TreningController {
                     public void run() {
                         t2.start(); // uruchomiony wątek drugi w tym miejscu
                         while (treningButton.isSelected()) {
+                            sklepButton.setDisable(true);
                             try {
                                 Thread.sleep(losujSleep());
                                 Platform.runLater(new Runnable() {
@@ -266,6 +301,7 @@ public class TreningController {
                 t3.setDaemon(true);
                 t3.start(); // uruchamiany wątek losowania monet w tym miejscu
             }
+            sklepButton.setDisable(false);
         }
         catch(Exception e){
                 e.printStackTrace();
@@ -301,7 +337,6 @@ public class TreningController {
         Boolean answer = ConfirmBox.display("Nowa gra","Rozpocząć nową grę i zresetować postać ?");
 
         if(answer==true) {
-            CharacterBean character = new CharacterBean();
             character.setLvl(1);
             character.setExp(0);
             character.setMaxExp(100);
@@ -361,7 +396,6 @@ public class TreningController {
     }
     @FXML
     void onLoadClick(ActionEvent event) {
-        CharacterBean character = new CharacterBean();
         Stage stage = new Stage();
         FileChooser chooser = new FileChooser();
         chooser.setTitle("Wczytaj postać. Domyślnie plik .txt w folderze z grą.");
