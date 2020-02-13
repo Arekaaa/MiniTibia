@@ -94,10 +94,10 @@ public class TreningController {
     void onSklepClick(ActionEvent event) {
         try {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/sklep.fxml"));
-           // Parent root = FXMLLoader.load(getClass().getResource("/FXML/sklep.fxml"));
             Parent root = fxmlLoader.load();
             ShopController shop = fxmlLoader.getController();
             shop.loadShopData(labelLVL.getText(),labelMonety.getText(),labelEXP.getText(),labelMaxExp.getText(),labelHP.getText(),labelDMG.getText(),labelArmor.getText());
+            shop.dodajEq();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
             stage.setResizable(false);

@@ -1,3 +1,6 @@
 #anchorPane {
     -fx-background-image: url('../Images/background.jpg');
 }
+#shopTable .table-column {
+    -fx-alignment: CENTER;
+}
