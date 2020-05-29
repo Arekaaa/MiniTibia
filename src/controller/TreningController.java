@@ -18,10 +18,7 @@ import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.IOException;
 import java.io.PrintWriter;
-import java.util.Calendar;
-import java.util.List;
-import java.util.Random;
-import java.util.Scanner;
+import java.util.*;
 
 public class TreningController {
     @FXML
@@ -73,8 +70,11 @@ public class TreningController {
     private Button sklepButton;
 
     CharacterBean character = new CharacterBean();
+    ShopController shopp = new ShopController();
 
-    void loadTreningData(String lvl, String money,String exp, String maxExp, String hp, String dmg, String armor,double progress){
+    void loadTreningData(String lvl, String money,String exp, String maxExp, String hp, String dmg, String armor,double progress,List<Object> kupione,int iloscKupionych,
+                         String zalozonaNazwaMiecz,String zalozonaNazwaButy,String zalozonaNazwaHelm,String zalozonaNazwaSpodnie,String zalozonaNazwaZbroja,String zalozonyTyp){
+        //kupione.addAll(character.getKupione());
         labelLVL.setText(lvl);
         labelMonety.setText(money);
         labelEXP.setText(exp);
@@ -83,11 +83,32 @@ public class TreningController {
         labelDMG.setText(dmg);
         labelArmor.setText(armor);
         progressBar.setProgress(progress);
-    }
+        shopp.setListaKupiona(kupione);
+        shopp.setIloscKupionych(iloscKupionych);
+        //shopp.setId(id);
+        shopp.setZalozonaNazwaMiecz(zalozonaNazwaMiecz);
+        shopp.setZalozonaNazwaButy(zalozonaNazwaButy);
+        shopp.setZalozonaNazwaHelm(zalozonaNazwaHelm);
+        shopp.setZalozonaNazwaSpodnie(zalozonaNazwaSpodnie);
+        shopp.setZalozonaNazwaZbroja(zalozonaNazwaZbroja);
+        shopp.setZalozonyTyp(zalozonyTyp);
 
-    @FXML
-    void onEkwipunekClick(ActionEvent event) {
+        //if(zalozonyTyp.equals("Miecz"))
+        labelMiecz.setText(zalozonaNazwaMiecz);
+        labelZbroja.setText(zalozonaNazwaZbroja);
+        labelSpodnie.setText(zalozonaNazwaSpodnie);
+        labelHelm.setText(zalozonaNazwaHelm);
+        labelButy.setText(zalozonaNazwaButy);
 
+        /*shopp.setTyp(typ);
+        shopp.setCena(cena);
+        shopp.setLVL(LVL);
+        shopp.setHp(hpp);
+        shopp.setDmg(dmgg);
+        shopp.setArmor(armorr);*/
+        //System.out.println(character.getKupione());
+        //kupione = shop.listaKupiona;
+        //character.setKupione(kupione);
     }
 
     @FXML
@@ -96,7 +117,9 @@ public class TreningController {
             FXMLLoader fxmlLoader = new FXMLLoader(getClass().getResource("/FXML/sklep.fxml"));
             Parent root = fxmlLoader.load();
             ShopController shop = fxmlLoader.getController();
-            shop.loadShopData(labelLVL.getText(),labelMonety.getText(),labelEXP.getText(),labelMaxExp.getText(),labelHP.getText(),labelDMG.getText(),labelArmor.getText());
+            shop.loadShopData(labelLVL.getText(),labelMonety.getText(),labelEXP.getText(),labelMaxExp.getText(),labelHP.getText(),labelDMG.getText(),labelArmor.getText(),
+                    shopp.getListaKupiona(),shopp.getIloscKupionych(),shopp.getZalozonaNazwaMiecz(),shopp.getZalozonaNazwaButy(),shopp.getZalozonaNazwaHelm(),
+                    shopp.getZalozonaNazwaSpodnie(),shopp.getZalozonaNazwaZbroja(),shopp.getZalozonyTyp());
             shop.dodajEq();
             Stage stage = new Stage();
             stage.setScene(new Scene(root));
@@ -164,8 +187,8 @@ public class TreningController {
     void onTrenujClick(ActionEvent event) {
         try {
             if (treningButton.isSelected()) {
-                treningList.getItems().add("Trening rozpoczęty... Sklep niedostępny");
-                treningList.getItems().add("Poczekaj 20 sekund a następnie zakończ trening w celu włączenia sklepu");
+                treningList.getItems().add("Trening rozpoczęty... Sklep i ekwipunek stają się niedostępne");
+                treningList.getItems().add("Poczekaj 20 sekund a następnie zakończ trening w celu ich włączenia");
                 Thread t2 = new Thread(new Runnable() { // Wątek obsługujący freezowanie buttona na 20 sekund w celu unikania oszustwa.
                     @Override
                     public void run() {
@@ -334,7 +357,7 @@ public class TreningController {
     @FXML
     void onNowaGraClick(ActionEvent event) {
 
-        Boolean answer = ConfirmBox.display("Nowa gra","Rozpocząć nową grę i zresetować postać ?");
+        boolean answer = ConfirmBox.display("Nowa gra","Rozpocząć nową grę i zresetować postać ?");
 
         if(answer==true) {
             character.setLvl(1);
@@ -360,6 +383,11 @@ public class TreningController {
             labelHP.setText(resetHp);
             labelDMG.setText(resetDmg);
             labelArmor.setText(resetArmor);
+            labelMiecz.setText("Podstawowy Miecz");
+            labelZbroja.setText("Podstawowa Zbroja");
+            labelSpodnie.setText("Podstawowe Spodnie");
+            labelHelm.setText("Podstawowy Hełm");
+            labelButy.setText("Podstawowe Buty");
             progressBar.setProgress(0.0);
 
             treningList.getItems().add("Zresetowano grę!");
@@ -386,6 +414,7 @@ public class TreningController {
             zapis.println(hp);
             zapis.println(dmg);
             zapis.println(armor);
+            zapis.println(character.getKupione());
 
             zapis.close();
             treningList.getItems().add("Zapisano grę pod nazwą: "+SaveBox.getNazwaZapisana());
@@ -413,6 +442,7 @@ public class TreningController {
                 String odczytHp = odczyt.nextLine();
                 String odczytDmg = odczyt.nextLine();
                 String odczytArmor = odczyt.nextLine();
+                //String odczytPrzedmioty = odczyt.nextLine();
 
                 int wczytanyLvl = Integer.parseInt(odczytLvl);
                 int wczytanyExp = Integer.parseInt(odczytExp);
@@ -421,6 +451,8 @@ public class TreningController {
                 int wczytaneHp = Integer.parseInt(odczytHp);
                 int wczytaneDmg = Integer.parseInt(odczytDmg);
                 int wczytanyArmor = Integer.parseInt(odczytArmor);
+                List<Object> wczytanePrzedmioty = new ArrayList<Object>();
+                //wczytanePrzedmioty.add(odczytPrzedmioty);
 
                 character.setLvl(wczytanyLvl);
                 character.setExp(wczytanyExp);
@@ -429,6 +461,8 @@ public class TreningController {
                 character.setHp(wczytaneHp);
                 character.setDmg(wczytaneDmg);
                 character.setArmor(wczytanyArmor);
+                //character.setKupione(wczytanePrzedmioty);
+                //System.out.println(character.getKupione());
 
                 labelLVL.setText(odczytLvl);
                 labelEXP.setText(odczytExp);

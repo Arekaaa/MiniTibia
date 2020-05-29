@@ -1,5 +1,7 @@
 package beans;
 
+import java.util.List;
+
 public class CharacterBean {
    private int hp;
    private int dmg;
@@ -8,6 +10,7 @@ public class CharacterBean {
    private int lvl;
    private int exp;
    private int maxExp;
+   private List<Object> kupione;
 
 
     public int getHp() {
@@ -64,5 +67,13 @@ public class CharacterBean {
 
     public void setMaxExp(int maxExp) {
         this.maxExp = maxExp;
+    }
+
+    public List<Object> getKupione() {
+        return kupione;
+    }
+
+    public void setKupione(List<Object> kupione) {
+        this.kupione = kupione;
     }
 }

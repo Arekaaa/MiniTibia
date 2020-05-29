@@ -9,6 +9,7 @@
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
 <?import javafx.scene.layout.AnchorPane?>
+<?import javafx.scene.layout.HBox?>
 <?import javafx.scene.layout.VBox?>
 <?import javafx.scene.text.Font?>
 
@@ -63,11 +64,10 @@
                </font>
             </Label>
             <Button layoutX="2.0" mnemonicParsing="false" onAction="#onTreningClick" prefHeight="25.0" prefWidth="125.0" text="Trening" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Button disable="true" layoutX="125.0" mnemonicParsing="false" onAction="#onEkwipunekClick" prefHeight="25.0" prefWidth="125.0" text="Ekwipunek" AnchorPane.topAnchor="0.0" />
-            <Button layoutX="250.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.topAnchor="0.0" />
+            <Button layoutX="125.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.leftAnchor="125.0" AnchorPane.topAnchor="0.0" />
             <Button layoutX="920.0" layoutY="589.0" mnemonicParsing="false" onAction="#onChangelogClick" text="Changelog" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Button layoutY="589.0" mnemonicParsing="false" onAction="#onExitClick" text="Wyjście z gry" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" />
-            <TableView fx:id="shopTable" layoutX="99.0" layoutY="156.0" prefHeight="425.0" prefWidth="814.0">
+            <TableView fx:id="shopTable" layoutX="38.0" layoutY="159.0" prefHeight="425.0" prefWidth="926.0">
               <columns>
                 <TableColumn fx:id="tableNumer" prefWidth="43.0" resizable="false" text="Numer" />
                 <TableColumn fx:id="tableNazwa" prefWidth="271.0" resizable="false" text="Nazwa" />
@@ -76,11 +76,12 @@
                   <TableColumn fx:id="tableCena" prefWidth="88.0" resizable="false" text="Cena" />
                   <TableColumn fx:id="tableHp" prefWidth="76.0" resizable="false" text="Boost HP" />
                   <TableColumn fx:id="tableDmg" prefWidth="72.0" resizable="false" text="Boost DMG" />
-                  <TableColumn fx:id="tableArmor" prefWidth="77.0" resizable="false" text="Boost Armor" />
+                  <TableColumn fx:id="tableArmor" prefWidth="76.0" resizable="false" text="Boost Armor" />
+                  <TableColumn fx:id="tableKup" prefWidth="112.0" resizable="false" sortable="false" text="Akcja" />
               </columns>
             </TableView>
-
-            
+            <HBox alignment="CENTER">
+         </HBox>
          </children>
       </AnchorPane>
    </children>

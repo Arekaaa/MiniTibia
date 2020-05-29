@@ -1,10 +1,15 @@
 package beans;
 
+import controller.ShopController;
 import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleListProperty;
 import javafx.beans.property.SimpleStringProperty;
+import javafx.collections.ObservableList;
+
+import java.util.List;
 
 public class EqBeans {
-
+    ShopController shop = new ShopController();
     private final SimpleIntegerProperty id;
     private final SimpleIntegerProperty eqLvl;
     private final SimpleIntegerProperty eqMonety;
@@ -14,15 +19,17 @@ public class EqBeans {
     private final SimpleStringProperty typ;
     private final SimpleStringProperty nazwa;
 
-    /*public EqBeans(){
-        this.nazwa = " ";
-        this.typ = " ";
-        this.eqLvl = 0;
-        this.eqMonety = 0;
-        this.eqHp = 0;
-        this.eqDmg = 0;
-        this.eqArmor = eqArmor;
-    }*/
+
+    public EqBeans(){
+        this.id = new SimpleIntegerProperty(0);
+        this.nazwa = new SimpleStringProperty(" ");
+        this.typ = new SimpleStringProperty(" ");
+        this.eqLvl = new SimpleIntegerProperty(0);
+        this.eqMonety = new SimpleIntegerProperty(0);
+        this.eqHp = new SimpleIntegerProperty(0);
+        this.eqDmg = new SimpleIntegerProperty(0);
+        this.eqArmor = new SimpleIntegerProperty(0);
+    }
 
     public EqBeans(int id,String nazwa, String typ, int eqLvl, int eqMonety, int eqHp, int eqDmg, int eqArmor){
         this.id = new SimpleIntegerProperty(id);

@@ -117,23 +117,23 @@
                   <Font name="System Bold" size="20.0" />
                </font>
             </Label>
-            <Label fx:id="labelMiecz" layoutX="822.0" layoutY="105.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelMiecz" layoutX="822.0" layoutY="105.0" text="Podstawowy Miecz" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelHelm" layoutX="822.0" layoutY="174.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelHelm" layoutX="822.0" layoutY="174.0" text="Podstawowy Hełm" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelZbroja" layoutX="822.0" layoutY="243.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelZbroja" layoutX="822.0" layoutY="243.0" text="Podstawowa Zbroja" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelSpodnie" layoutX="822.0" layoutY="310.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelSpodnie" layoutX="822.0" layoutY="310.0" text="Podstawowe Spodnie" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
-            <Label fx:id="labelButy" layoutX="822.0" layoutY="373.0" text="Label" textFill="WHITE">
+            <Label fx:id="labelButy" layoutX="822.0" layoutY="373.0" text="Podstawowe Buty" textFill="WHITE">
                <font>
                   <Font name="System Bold" size="12.0" />
                </font></Label>
@@ -155,8 +155,7 @@
                </font></Label>
             <ListView fx:id="treningList" layoutX="282.0" layoutY="231.0" opacity="0.8" prefHeight="175.0" prefWidth="352.0" />
             <Button layoutX="2.0" mnemonicParsing="false" onAction="#onTreningClick" prefHeight="25.0" prefWidth="125.0" text="Trening" AnchorPane.leftAnchor="0.0" AnchorPane.topAnchor="0.0" />
-            <Button disable="true" layoutX="125.0" mnemonicParsing="false" onAction="#onEkwipunekClick" prefHeight="25.0" prefWidth="125.0" text="Ekwipunek" AnchorPane.topAnchor="0.0" />
-            <Button fx:id="sklepButton" layoutX="250.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.topAnchor="0.0" />
+            <Button fx:id="sklepButton" layoutX="125.0" mnemonicParsing="false" onAction="#onSklepClick" prefHeight="25.0" prefWidth="125.0" text="Sklep" AnchorPane.topAnchor="0.0" />
             <Button layoutX="920.0" layoutY="589.0" mnemonicParsing="false" onAction="#onChangelogClick" text="Changelog" AnchorPane.bottomAnchor="0.0" AnchorPane.rightAnchor="0.0" />
             <Label layoutX="378.0" layoutY="199.0" text="Armor" textFill="WHITE">
                <font>
